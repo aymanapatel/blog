@@ -17,7 +17,7 @@ We just dump data into these without considering what the data represents. We al
 
 # Time Series 101
 
-So what is a time series anyway? Well from its [Wikipedia definition](https://en.wikipedia.org/wiki/Time_series)  
+So what is a time series anyway? Well from its [Wikipedia definition](https://en.wikipedia.org/wiki/Time_series)
 
 > A **time series** is a series of [data points](https://en.wikipedia.org/wiki/Data_point) indexed (or listed or graphed) in time order.
 
@@ -48,11 +48,9 @@ While you have a TSDB; it makes the development and product team inclined with a
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1701605461434/c317d3ba-916c-4066-ae17-d463cf3af000.png align="center")
 
-So let the person who owns the Monitoring tool sleep with peace!  
+So let the person who owns the Monitoring tool sleep with peace!
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1701605088662/c5762ce2-8fe5-4ef0-bc78-fbb4d5fe5cda.png align="center")
-
-  
 
 # Tools
 
@@ -66,25 +64,25 @@ It is a [daemon(aka background process)](https://en.wikipedia.org/wiki/Daemon_(c
 
 There are 4 components of Carbon
 
-1. Carbon-relay
-    
+* 1. Carbon-relay
+        
 
 > Use for replication and sharding of the data.
 
 Grafana has their own implementation of carbon-relay called as [carbon-relay-ng](https://github.com/grafana/carbon-relay-ng) which is blazingly fast, built-in aggregator functionality such as cross-series & cross-time aggregations .etc. Read more on [Grafana doc site](https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-graphite/data-ingestion/)
 
-1. Carbon-aggregator
-    
+* 1. Carbon-aggregator
+        
 
 Used to aggregate metrics. Why aggregate? As too much data can lead to a lot of noise, performance degradation as well as storage costs; carbon-aggregator rewuirs to redice the cardinality/granularity of data which ultimate leads to better I/O performance
 
-1. Carbon-cache
-    
+* 1. Carbon-cache
+        
 
 It takes data coming from carbon-aggregator and dumps to Whisper(or Ceres) for persistent storage. It also loads some of data into RAM for faster access.
 
-1. Carbon-aggregator-cache
-    
+* 1. Carbon-aggregator-cache
+        
 
 It is a combination of both Carbon-cache and Carbon-aggregator in order to reduce the resource utilization of running both as sepreate daemons.
 
@@ -215,13 +213,13 @@ All InfluxDB functions can be [found here](https://docs.influxdata.com/influxdb/
     An example query to filter CPU measurement for the last 1 hour for every 1-minute interval and calculate the mean for every window.
     
 2. ```elixir
-    from(bucket:"telegraf/autogen")
-      |> range(start:-1h)
-      |> filter(fn:(r) =>
-        r._measurement == "cpu" and
-        r.cpu == "cpu-total"
-      )
-      |> aggregateWindow(every: 1m, fn: mean)
+     from(bucket:"telegraf/autogen")
+       |> range(start:-1h)
+       |> filter(fn:(r) =>
+         r._measurement == "cpu" and
+         r.cpu == "cpu-total"
+       )
+       |> aggregateWindow(every: 1m, fn: mean)
     ```
     
 
