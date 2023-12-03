@@ -1,7 +1,7 @@
 ---
 title: "Marveling on Metrics & Observibility with TSDB"
 seoTitle: "Marvelling on Metrics, Observability and TSDB"
-seoDescription: "Time Series Database and Observability"
+seoDescription: "Marvelling on Metrics, Time Series Database and Observability"
 datePublished: Sun Dec 03 2023 12:32:53 GMT+0000 (Coordinated Universal Time)
 cuid: clppgqlaf000d09l3a38z4t8t
 slug: marveling-on-metrics-observibility-with-tsdb
