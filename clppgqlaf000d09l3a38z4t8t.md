@@ -5,7 +5,7 @@ seoDescription: "Marvelling on Metrics, Time Series Database and Observability"
 datePublished: Sun Dec 03 2023 12:32:53 GMT+0000 (Coordinated Universal Time)
 cuid: clppgqlaf000d09l3a38z4t8t
 slug: marveling-on-metrics-observibility-with-tsdb
-cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1701606701645/51914bb1-5705-4a46-a189-1f2166f4a397.png
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1701618090989/01c716e8-fa83-4723-a519-899cf5a44948.png
 ogImage: https://cdn.hashnode.com/res/hashnode/image/upload/v1701606718180/8c64185a-14c5-4f01-a583-67ea79b7b0c5.png
 tags: performance, metrics, observability, time-series-database
 
