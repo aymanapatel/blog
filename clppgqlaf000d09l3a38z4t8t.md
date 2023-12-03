@@ -13,7 +13,7 @@ tags: performance, metrics, observability, time-series-database
 
 Software engineers deal with 2 things. Code they write and metrics they monitor. Mostly we are ok or know what the code is and what it does. But from an observability point-of-view; we are winging it with our naive assumptions on the data that is emitted by our application. We don't even know how frequently our data is sampled, what a time-series database is, and what the querying engine used.
 
-We just dump data into these without considering what the data represents. We also do not consider what to query. Do I query the average inherently wrong response time.
+We just dump data into these without considering what the data represents. We also do not consider what to query. Do I query the average inherently wrong response time?
 
 # Time Series 101
 
@@ -44,7 +44,7 @@ That is why it is imperative to use a TSDB. These gather various metrics in vari
 
 ### Gotcha 2: Cardinality is where $$$ is to be saved
 
-While you have a TSDB; it makes the development and product team inclined with an urge to custom tags/fields. Well, there ain't any free lunch in terms of storage cost and also query execution time. Observability is both an art and science or which metric to measure. This [talk](https://www.youtube.com/watch?v=EmZ6wycniGs) gives a good framework for selecting the metrics. Metrics should be moved to buckets of heavily used, moderately used and least used along with cardinality data. Removing less used metric with high cardinality (more unique, dissimilar rows)
+While you have a TSDB; it makes the development and product team inclined with an urge to custom tags/fields. Well, there ain't any free lunch in terms of storage cost and query execution time. Observability is both an art and science or which metric to measure. This [talk](https://www.youtube.com/watch?v=EmZ6wycniGs) gives a good framework for selecting the metrics. Metrics should be moved to buckets of heavily used, moderately used and least used along with cardinality data. Removing less used metrics with high cardinality (more unique, dissimilar rows)
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1701605461434/c317d3ba-916c-4066-ae17-d463cf3af000.png align="center")
 
@@ -69,22 +69,22 @@ There are 4 components of Carbon
 
 > Use for replication and sharding of the data.
 
-Grafana has their own implementation of carbon-relay called as [carbon-relay-ng](https://github.com/grafana/carbon-relay-ng) which is blazingly fast, built-in aggregator functionality such as cross-series & cross-time aggregations .etc. Read more on [Grafana doc site](https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-graphite/data-ingestion/)
+Grafana has its implementation of carbon-relay called [carbon-relay-ng](https://github.com/grafana/carbon-relay-ng) which is blazingly fast, built-in aggregator functionality such as cross-series & cross-time aggregations .etc. Read more on the [Grafana doc site](https://grafana.com/docs/grafana-cloud/send-data/metrics/metrics-graphite/data-ingestion/)
 
 * 1. Carbon-aggregator
         
 
-Used to aggregate metrics. Why aggregate? As too much data can lead to a lot of noise, performance degradation as well as storage costs; carbon-aggregator rewuirs to redice the cardinality/granularity of data which ultimate leads to better I/O performance
+Used to aggregate metrics. Why aggregate? As too much data can lead to a lot of noise, performance degradation as well and storage costs; carbon-aggregator attempts to reduce the cardinality/granularity of data which ultimately leads to better I/O performance
 
 * 1. Carbon-cache
         
 
-It takes data coming from carbon-aggregator and dumps to Whisper(or Ceres) for persistent storage. It also loads some of data into RAM for faster access.
+It takes data coming from the **carbon-aggregator** and dumps it to Whisper(or Ceres) for persistent storage. It also loads some of the data into RAM for faster access.
 
 * 1. Carbon-aggregator-cache
         
 
-It is a combination of both Carbon-cache and Carbon-aggregator in order to reduce the resource utilization of running both as sepreate daemons.
+It is a combination of both Carbon-cache and Carbon-aggregator in order to reduce the resource utilization of running both as separate daemons.
 
 ### Database and Data Storage
 
@@ -93,12 +93,42 @@ It is a combination of both Carbon-cache and Carbon-aggregator in order to reduc
 
 A fixed-size database which is similar to [Round-Robin-database aka RRD](https://joojscript.medium.com/what-you-know-about-round-robin-databases-e9a33c34277d)
 
-Unlike RDD, Whisper allows to backfill data which allows to import historical data. FOr more difference; [read the doc](https://graphite.readthedocs.io/en/latest/whisper.html#differences-between-whisper-and-rrd)
+Unlike RDD, Whisper allows to backfill data which allows to import historical data. FOr more differences; [read the doc](https://graphite.readthedocs.io/en/latest/whisper.html#differences-between-whisper-and-rrd)
 
 * StatsD
     
 
-It is not a database perse; but it is commonly used as a data collector in Graphite to send additional information to the graphite instance. Information such as [Gauges, Counters, Timing Summary Statistics, and Sets](https://github.com/statsd/statsd/blob/master/docs/metric_types.md#statsd-metric-types) can be sent to Graphite.
+It is not a database per se, but it is commonly used as a data collector in Graphite to send additional information to the graphite instance. Information such as [Gauges, Counters, Timing Summary Statistics, and Sets](https://github.com/statsd/statsd/blob/master/docs/metric_types.md#statsd-metric-types) can be sent to Graphite.
+
+* Query language
+    
+
+Graphite provides [**functions**](https://graphite.readthedocs.io/en/latest/functions.html) to query, manipulate, and transform data from the stored time series data.
+
+List of **functions** (Exhaustive list [here](https://graphite.readthedocs.io/en/latest/functions.html#functions)):
+
+| Function | What | Example |
+| --- | --- | --- |
+| absolute | Apply the mathematical absolute function | `absolute(Server.instance01.threads.busy)` |
+| add | Add constant to the metric | `add(Server.instance01.threads.busy, 10)` |
+| aggregate | Aggregate series using a given function (avg, sum, min, max, diff, stddev, count, range, last, multiply) | `aggregate(host.cpu-[0-7].cpu-{user,system}.value, "sum")` |
+
+### Data Ingestion
+
+Graphite supports 3 data ingestion methods
+
+1. Plaintext
+    
+2. Pickle
+    
+3. AMQP
+    
+
+| Method | Format | Usage | `carbon.conf` [Reference](https://github.com/graphite-project/carbon/blob/master/conf/carbon.conf.example) |
+| --- | --- | --- | --- |
+| Plaintext | `<metric path> <metric value> <metric timestamp>` | Quick and trivial monitoring |  |
+| Pickle | `[(path, (timestamp, value)), ...]` | Allows multi-levbel tuples | `DESTINATION_PROTOCOL` and other `PICKLE_RECIEVER_*` |
+| AMQP |  | Reliable data transfer via AMQP broker. | `ENABLE_AMQP` and other `AMQP_*` configs |
 
 ### Data Model
 
@@ -115,41 +145,12 @@ metric_path value timestamp\n
 
 // Example
 stats.api-server.tracks.post.500 -> 93 1455320690
-
-- [C] Query language
-
-Graphite provides [**functions**](https://graphite.readthedocs.io/en/latest/functions.html) to query, manipulate, transform data from the stored time series data.
-
-List of **functions** (Exhaustive list [here](https://graphite.readthedocs.io/en/latest/functions.html#functions)):
-
-| Function   | What                                                                                                     | Example                                                    |
-|------------|----------------------------------------------------------------------------------------------------------|------------------------------------------------------------|
-| absolute   | Apply the mathematical absolute function                                                                 | `absolute(Server.instance01.threads.busy)`                 |
-| add        | Add constant to the metric                                                                               | `add(Server.instance01.threads.busy, 10)`                  |
-| aggregate  | Aggregate series using a given function (avg, sum, min, max, diff, stddev, count, range, last, multiply) | `aggregate(host.cpu-[0-7].cpu-{user,system}.value, "sum")` |
-
-- [C] Data Ingestion
-
-Graphite supports 3 data ingestion method
-
-1. Plaintext
-2. Pickle
-3. AMQP
-
-
-| Method    | Format                                                      | Usage  |  `carbon.conf` [Reference](https://github.com/graphite-project/carbon/blob/master/conf/carbon.conf.example)  |
-|-----------|-------------------------------------------------------------|---|---|
-| Plaintext | `<metric   path>   <metric   value>   <metric   timestamp>` | Quick and trivial monitoring  |   |
-| Pickle    | `[(path, (timestamp, value)), ...]`                         | Allows multi-levbel tuples  |  `DESTINATION_PROTOCOL`  and other `PICKLE_RECIEVER_*`|
-| AMQP      |                                                             | Reliable data transfer via AMQP broker.  | `ENABLE_AMQP` and other `AMQP_*` configs  |
-
-Getting data into
 ```
 
-1. Graphite with tag support
+1. Graphite with Tag Support
     
 
-A lot of TSDB such as Influx, Prometheus had tag support from beginning, hence Graphite added Tag support in v1.1 to identify different time series data
+A lot of TSDB such as Influx, Prometheus had tag support from the beginning, hence Graphite added Tag support in v1.1 to identify different time series data
 
 Example:
 
@@ -210,16 +211,16 @@ All InfluxDB functions can be [found here](https://docs.influxdata.com/influxdb/
     
     Flux is a human-readable, flexible query language that behaves for like a functional language than a query language such as SQL.
     
-    An example query to filter CPU measurement for the last 1 hour for every 1-minute interval and calculate the mean for every window.
+    An example query is to filter CPU measurement for the last 1 hour for every 1-minute interval and calculate the mean for every window.
     
 2. ```elixir
-     from(bucket:"telegraf/autogen")
-       |> range(start:-1h)
-       |> filter(fn:(r) =>
-         r._measurement == "cpu" and
-         r.cpu == "cpu-total"
-       )
-       |> aggregateWindow(every: 1m, fn: mean)
+      from(bucket:"telegraf/autogen")
+        |> range(start:-1h)
+        |> filter(fn:(r) =>
+          r._measurement == "cpu" and
+          r.cpu == "cpu-total"
+        )
+        |> aggregateWindow(every: 1m, fn: mean)
     ```
     
 
