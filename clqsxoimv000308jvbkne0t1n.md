@@ -39,6 +39,10 @@ The security of application is determined by running test on the running applica
 
 The security of application is determined by running an agent inside the application similar to agents deployed for monitoring such as Dynatace, eBPF etc It has advantages of both DAST and SAST. It can run against deployed application as well as see the source code.
 
+Following illustration is on what DAST, SAST, IAST tests:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1703997703028/a2965239-b587-4ed8-bcda-f5d5d5746f5a.jpeg align="center")
+
 ## SCA
 
 > Software Component Analysis
@@ -56,10 +60,14 @@ SCA's provide an interface with dashboards on number of issues (license, vulnera
 
 | Type | Example | What | Cons | Pros |
 | --- | --- | --- | --- | --- |
-| SAST | Checkmax, Sonarqube | Look at code |  |  |
-| IAST | Invicti | Interactive testing by embedded to application and running security tests. |  |  |
-| DAST |  | Run security tests from outside |  |  |
-| SCA | Synk, Blackduck | Look at vulnerabilities of libraries. Other things is also to consider licenses of libraries as well as how well-maintained | \- Very low Signal-to-noise ratio |  |
+| SAST | Checkmax, Sonarqube | Look at code to find vulnerability | False positives possible | Find exact security issue in the client code |
+| IAST | Invicti, Semgrep, Contrast security | Interactive testing by embedded to running application and running security test against application | Requires agent to run which may not be available for a particular language | Ability to see source code like SAST while running real security attacks like DAST |
+| DAST | Bright security, Veracode DAST | Run security tests from outside | Developers cannot grt root cause of vulnerablity.Requires additional time root causing and fixing them. | Fast to run in CI/CD pipeline |
+| SCA | Synk, Blackduck | Look at vulnerabilities of libraries. Other things is also to consider licenses of libraries as well as how well-maintained | Very low Signal-to-noise ratio | Dashboard provides detals on security, package healt at one place |
+
+The following caability matrix by veracode provides the capabilities f each tool:
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1703996759226/6b5ac010-30c2-448b-b13a-8d013fe48473.jpeg align="center")
 
 # SBOM, VEX and CSAF
 
