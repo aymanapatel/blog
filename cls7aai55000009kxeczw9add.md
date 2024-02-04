@@ -1,7 +1,7 @@
 ---
 title: "OLAP databases - A Primer"
 seoTitle: "OLAP vs OLTP and the evolution of OLAP"
-seoDescription: "OLAP, Duckdb, Oracle, Postgres, Row-orineted vs Column-oriented, dbt"
+seoDescription: "OLAP vs OLTP and the evolution of OLAP"
 datePublished: Sun Feb 04 2024 09:11:40 GMT+0000 (Coordinated Universal Time)
 cuid: cls7aai55000009kxeczw9add
 slug: olap-databases-a-primer
