@@ -1,12 +1,12 @@
 ---
 title: "Land of Shell Scripting"
-seoTitle: "What is the difference between bash, sh, dash, zsh. And powershell is "
+seoTitle: "What is the difference between bash, sh, dash, zsh. And powershell is"
 seoDescription: "What is the difference between bash, sh, dash, zsh. And powershell is powerful!"
 datePublished: Sun Mar 31 2024 11:23:17 GMT+0000 (Coordinated Universal Time)
 cuid: cluffngms000008jv431i4f1j
 slug: land-of-shell-scripting
-cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1711884156201/264dc827-4703-4b05-ad02-40d03451b2d6.png
-ogImage: https://cdn.hashnode.com/res/hashnode/image/upload/v1711884180359/5873b6f5-935e-4f3a-a3b5-9064aa227e7b.png
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1711884316671/5abd7c46-3d41-4884-aee0-43e060cc5a7d.png
+ogImage: https://cdn.hashnode.com/res/hashnode/image/upload/v1711884326689/6342b925-44c4-44e2-b834-b7babbbac4b3.png
 tags: devops, shell, shell-scripting
 
 ---
