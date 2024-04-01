@@ -1,6 +1,6 @@
 ---
 title: "Land of Shell Scripting"
-seoTitle: "What is the difference between bash, sh, dash, zsh. And powershell is"
+seoTitle: "Land of shells: bash, dash, powershell"
 seoDescription: "What is the difference between bash, sh, dash, zsh. And powershell is powerful!"
 datePublished: Sun Mar 31 2024 11:23:17 GMT+0000 (Coordinated Universal Time)
 cuid: cluffngms000008jv431i4f1j
