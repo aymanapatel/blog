@@ -233,15 +233,15 @@ resilience4j.circuitbreaker:
 | failureRateThreshold | Configures the failure rate threshold in percentage. |
 | slowCallRateThreshold | Configures a threshold in percentage. The CircuitBreaker considers a call as slow when the call duration is greater than `slowCallDurationThreshold` |
 | slowCallDurationThreshold | Configures the duration threshold above which calls are considered as slow and increase the rate of slow calls. |
-| permittedNumberOfCalls  
-InHalfOpenState | Configures the number of permitted calls when the CircuitBreaker is half open. |
+| permittedNumberOfCalls |  |
+| InHalfOpenState | Configures the number of permitted calls when the CircuitBreaker is half open. |
 | maxWaitDurationInHalfOpenState | Configures a maximum wait duration which controls the longest amount of time a CircuitBreaker could stay in Half Open state, before it switches to open. |
 | slidingWindowType | `COUNT_BASED` or `TIME_BASED` |
 | slidingWindowSize | Configures the size of the sliding window which is used to record the outcome of calls when the CircuitBreaker is closed. |
 | minimumNumberOfCalls | Configures the minimum number of calls which are required (per sliding window period) before the CircuitBreaker calculates error rate or slow call rate. |
 | waitDurationInOpenState | Time that the CircuitBreaker should wait before transitioning from open to half-open. |
-| automaticTransition  
-FromOpenToHalfOpenEnabled | Boolean flag that transitons automatically from OPEN to HALF\_OPEN |
+| automaticTransition |  |
+| FromOpenToHalfOpenEnabled | Boolean flag that transitons automatically from OPEN to HALF\_OPEN |
 | recordExceptions | List of exceptions that are recorded as a failure and thus increase the failure rate. |
 | ignoreExceptions | List of exceptions that are ignored and neither count as a failure nor success. |
 | recordFailurePredicate | Custom Predicate which returns if an exception should be considered as failure |
@@ -476,7 +476,7 @@ Features include:
 
 # Quotes for Distributed Systems
 
-* Distributed systems: Untangling headphones while riding a rollercoaster (CHatGPT generated)
+* Distributed systems: Untangling headphones while riding a rollercoaster (ChatGPT generated)
     
 * Hope is not a strategy
     
