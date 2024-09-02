@@ -11,7 +11,6 @@ tags: aws, testing, localstack
 
 ---
 
-  
 Most of us learn AWS products such as S3, DynamoDB etc. We open an AWS account. Then we give our credit card. Then we spin up resources. Finally we are done with work and **forget** to switch off the resources that we have set up. Alas, the bill arrives and there is regret.
 
 ## Introducing Localstack
@@ -118,9 +117,9 @@ Test Containers is one of those technologies that is gaining steam as it emphasi
 
 1. **Maintaining Dev/Prod Parity:** Since Localstack is not an AWS organization, their will be some implementation level details. Localstack will try to match the behaviour, but their will still be some nuanced difference as it is a seperate environment when compared to AWS.
     
-2. **New AWS Features will not be their on day 1:** New AWS feature like the new [S3 conditional write](https://aws.amazon.com/about-aws/whats-new/2024/08/amazon-s3-conditional-writes/) will take time to be available Localstack.
+2. **New AWS Features will not be their on day 1:** New AWS feature like the new [S3 conditional write](https://aws.amazon.com/about-aws/whats-new/2024/08/amazon-s3-conditional-writes/) will take time to be available on Localstack.
     
-3. **Free version does not have all AWS Features:** The most common features such as S3, DynamoDB, SQS and SNS are present in free version; but some items such as Database (RDS/Aurora),
+3. **Free version does not have all AWS Features:** The most common features such as S3, DynamoDB, SQS and SNS are present in free version; but some items such as Database (RDS/Aurora) are in Pro image.
     
 
 It is always good to know what you are leveraging Localstack for. If you want to learn the services API such as S3, Dynamo, SQS; then Localstack is a great platform. But if you want to see actual usage or want to see how AWS manages things at scale, it is better to go for AWS Account only.
