@@ -88,10 +88,18 @@ SELECT my_rag_response('How do I onboard this new service?');
 4. Use [pgvectorscale](https://github.com/timescale/pgvectorscale) to do ANN which is required for RAG applications.
     
 
-  
-For real demo, Timescale has shared the demo here:  
+For real demo, Timescale has shared the demo here:
 
 %[https://www.youtube.com/watch?v=ZoC2XYol6Zk] 
+
+# Resources:
+
+1. [Timescale Blog](https://www.timescale.com/blog/vector-databases-are-the-wrong-abstraction/)
+    
+2. [PgAI Github repository](https://github.com/timescale/pgai)
+    
+
+# Closing thoughts
 
 So try it out in your Postgres instance. And closing thoughts is
 
