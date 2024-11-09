@@ -1,7 +1,7 @@
 ---
 title: "Grafana - One Observability Tool to Rule them All"
 seoTitle: "Grafana - One Observability Tool to Rule them All"
-seoDescription: " Different types of Observability tool and How Grafana does everything under 1 umbrella"
+seoDescription: "Different types of Observability tool and How Grafana does everything under 1 umbrella"
 datePublished: Sat Nov 09 2024 14:59:04 GMT+0000 (Coordinated Universal Time)
 cuid: cm3aajxiv000109l0e9wb2f29
 slug: grafana-one-observability-tool-to-rule-them-all
@@ -97,7 +97,6 @@ Tracing libraries include:
     
     ![Source: https://logz.io/blog/zipkin-vs-jaeger/](https://cdn.hashnode.com/res/hashnode/image/upload/v1731162156553/1ff72922-0193-4dfa-baa2-8ee6e7c2f292.png align="center")
     
-
 2. Zipkin: OSS platform which uses Cassandra for storage.
     
     ![Source: https://logz.io/blog/zipkin-vs-jaeger/](https://cdn.hashnode.com/res/hashnode/image/upload/v1731162183719/da70d93c-d823-47d0-9f2c-63b4abcf2fba.png align="center")
@@ -124,7 +123,7 @@ Profiling usually entails using a Flamegraph like below:
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1731162741623/93b9873a-57e0-44a3-a13a-303fc8c72522.png align="center")
 
-To learn more about flamegraphs, you can read [Brendan Gegg’s blog](https://www.brendangregg.com/flamegraphs.html)  
+To learn more about flamegraphs, you can read [Brendan Gegg’s blog](https://www.brendangregg.com/flamegraphs.html)
 
 ## Open Telemetry
 
@@ -315,30 +314,30 @@ In order to send metrics to Mimir, it is a simple 2 step process.
 1. Using Mimir through Grafana Cloud or Docker Container. Below are the steps to run Mimir in a Docker container
     
     1. ```bash
-         docker network create grafanet
+          docker network create grafanet
         ```
         
     2. ```bash
-          # Run docker
-         docker run \
-           --rm \
-           --name mimir \
-           --network grafanet \
-           --publish 9009:9009 \
-           --volume "$(pwd)"/demo.yaml:/etc/mimir/demo.yaml grafana/mimir:latest \
-           --config.file=/etc/mimir/demo.yaml
+           # Run docker
+          docker run \
+            --rm \
+            --name mimir \
+            --network grafanet \
+            --publish 9009:9009 \
+            --volume "$(pwd)"/demo.yaml:/etc/mimir/demo.yaml grafana/mimir:latest \
+            --config.file=/etc/mimir/demo.yaml
         ```
         
     3. ```bash
-         # Start Mimir
-         ./mimir --config.file=./demo.yaml
+          # Start Mimir
+          ./mimir --config.file=./demo.yaml
         ```
         
 2. Configure Prometheus for writing to Mimir
     
     1. ```yaml
-         remote_write:
-           - url: http://localhost:9009/api/v1/push
+          remote_write:
+            - url: http://localhost:9009/api/v1/push
         ```
         
 
@@ -509,3 +508,7 @@ It allows you configure escalation chains so that it can be escalated to differe
 It also allows you to customize the alert templates by using the Jinja2 templating engine.
 
 You can also deploy it as a [Docker container](https://github.com/grafana/oncall) if you want it on-premises.
+
+Closing thoughts:
+
+**Pvigb zhq thl ehfrgu rg fz drta**
