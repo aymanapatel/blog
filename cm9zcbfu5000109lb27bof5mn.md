@@ -6,6 +6,7 @@ datePublished: Sun Apr 27 2025 07:40:56 GMT+0000 (Coordinated Universal Time)
 cuid: cm9zcbfu5000109lb27bof5mn
 slug: snapshot-testing
 cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1745739615114/7bb4a528-45de-4c2c-bba1-1679225a0d9d.jpeg
+ogImage: https://cdn.hashnode.com/res/hashnode/image/upload/v1745740015350/7ec05587-3777-4724-b688-d6a3cdb32a9f.jpeg
 tags: testing, snapshot-testing
 
 ---
